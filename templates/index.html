@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Patient QR Generator</title>
+  <style>
+    body { font-family: Arial; background: #eef; padding: 20px; }
+    form {
+      background: #fff; padding: 20px; border-radius: 8px;
+      max-width: 500px; margin: auto; box-shadow: 0 0 10px #ccc;
+    }
+    input { width: 100%; margin-bottom: 10px; padding: 10px; }
+    button {
+      padding: 10px 20px;
+      background: green;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .qr-img { text-align: center; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h2 align="center">🩺 Patient QR Code Generator</h2>
+  <form method="POST">
+    <input type="text" name="name" placeholder="Patient Name" required>
+    <input type="number" name="age" step="0.1" placeholder="Patient Age" required>
+    <input type="text" name="allergies" placeholder="Allergies (space-separated)" required>
+    <input type="text" name="bloodgrp" placeholder="Blood Group" required>
+    <input type="text" name="main_contact" placeholder="Main Contact Number" required>
+    <input type="text" name="diseases" placeholder="Known Diseases (space-separated)">
+    <input type="text" name="emergency_contact" placeholder="Emergency Contact Number" required>
+    <button type="submit">Generate QR Code</button>
+  </form>
+
+  {% if qr_generated %}
+  <div class="qr-img">
+    <h3>Generated QR Code:</h3>
+    <img src="{{ url_for('static', filename='qr.png') }}" width="250">
+  </div>
+  {% endif %}
+</body>
+</html>
